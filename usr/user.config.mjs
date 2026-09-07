@@ -1,79 +1,85 @@
 /**
  * User Configuration File
- * 
- * This file allows you to override core settings and customize your site.
- * Edit this file to configure your site's metadata, integrations, and more.
- * 
- * The settings here will be merged with the core configuration in astro.config.mjs
+ *
+ * CHIN-DICTIONARY
+ * https://chindictionary.lad-sapienza.it
+ *
+ * This file overrides the default s:CMS settings for the
+ * CHIN-DICTIONARY website.
  */
 
 export const userConfig = {
-  // Site URL (required for sitemap and canonical URLs)
-  site: 'https://scms.lad-sapienza.it',
-  
-  // Base path (if deploying to a subdirectory)
-  // base: '/my-site',
-  
-  // Additional integrations (will be merged with core integrations)
+  // Full public URL of the website.
+  // No base path is required because the site is served from
+  // the root of the custom domain.
+  site: 'https://chindictionary.lad-sapienza.it',
+
+  // Do NOT set a GitHub Pages repository base here.
+  // The public website is available at the root of the custom domain.
+  // base: '/chindictionary',
+
+  // Additional integrations (merged with core integrations)
   integrations: [
-    // Add your custom integrations here
+    // Add custom integrations here if needed
   ],
-  
+
   // Custom Vite configuration
   vite: {
-    // Your custom Vite config
+    // Add custom Vite settings here if needed
   },
-  
+
   // Markdown configuration overrides
   markdown: {
-    // Your custom markdown config
+    // Add custom Markdown settings here if needed
   },
 };
 
 /**
  * Site Metadata
- * 
- * These values are used throughout the site for SEO, social media cards,
- * and general site information.
+ *
+ * Used for SEO, social media cards, and general site information.
  */
 export const siteMetadata = {
-  title: 's:CMS',
-  titleTemplate: '%s | s:CMS',
-  description: 'Static Content Management System developed by LAD: Laboratorio di Archeologia Digitale alla Sapienza',
-  author: 'Julian Bogdani <julian.bogdani@uniroma1.it>',
-  siteName: 'LAD: Laboratorio di Archeologia Digitale alla Sapienza',
-  defaultImage: '/images/scms-lad.png',
-  twitter: '@JulianBogdani',
+  title: 'Dictionarium Sinico-Latinum',
+  titleTemplate: '%s | CHIN-DICTIONARY',
+
+  description:
+    'Digital edition and research environment for Basilio Brollo’s Dictionarium Sinico-Latinum, developed within the CHIN-DICTIONARY project.',
+
+  author: 'CHIN-DICTIONARY Project',
+
+  siteName: 'CHIN-DICTIONARY',
+
+  defaultImage: '/images/chind/home/logo_chind.png',
 };
 
 /**
  * Directus Configuration
- * 
- * DEPRECATED: No longer needed! 
- * 
- * Map and DataTb components now automatically read from environment variables:
- * - PUBLIC_DIRECTUS_URL
- * - PUBLIC_DIRECTUS_TOKEN
- * 
- * Simply create a .env file in your project root:
- * 
- * PUBLIC_DIRECTUS_URL=https://your-directus-instance.com
- * PUBLIC_DIRECTUS_TOKEN=your-token-here
- * 
- * Then use the simplified interface:
- * 
- * <DataTb 
- *   directus={{
- *     table: "your_collection",
- *     queryString: "filter[status][_eq]=published"
- *   }}
- * />
- * 
- * <Map 
- *   directus={{
- *     table: "your_collection",
- *     geoField: "geometry",
- *     queryString: "filter[visible][_eq]=true"
- *   }}
- * />
+ *
+ * CHIN-DICTIONARY uses Directus as its data source.
+ *
+ * IMPORTANT:
+ * Authentication credentials must not be stored in this file
+ * or committed to the repository.
+ *
+ * The CHIN-DICTIONARY server-side endpoints use:
+ *
+ * DIRECTUS_URL=https://db.lad-sapienza.it/chind
+ * DIRECTUS_TOKEN=<read-only-token>
+ *
+ * Locally, these values are stored in the project's .env file.
+ *
+ * On GitHub Actions they must be configured as repository secrets:
+ *
+ * Settings
+ * → Secrets and variables
+ * → Actions
+ *
+ * Required secrets:
+ *
+ * DIRECTUS_URL
+ * DIRECTUS_TOKEN
+ *
+ * Do not expose the read-only token through PUBLIC_DIRECTUS_TOKEN
+ * unless a specific client-side s:CMS component explicitly requires it.
  */
